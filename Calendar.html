@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calendar</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="codebase/dhtmlxcalendar.css"/>
+   
+    
+	<script src="codebase/dhtmlxcalendar.js"></script>
+	<script>
+		var myCalendar;
+		function doOnLoad() {
+			myCalendar = new dhtmlXCalendarObject("calendarHere");
+			myCalendar.hideTime();
+			myCalendar.show();
+			myCalendar.setDate(fecha);
+		}
+		
+		function setInInterval() {
+		var fecha = document.getElementById("date").value;
+		var dia = document.getElementById("day").value;
+
+    	var res = fecha.substr(-2);
+    	var parsefecha = parseInt(res);
+    	var parseday = parseInt(dia);
+    
+		var total = parsefecha + parseday;
+        var total2 = total - 1;
+    
+    	var convertir = total2.toString();
+   
+   	 	var res1 = fecha.substr(-10, 8);
+		
+    	var fechaultima = res1.concat(convertir);
+	
+			myCalendar.setSensitiveRange(fecha,fechaultima);
+		}
+
+	</script>
+</head>
+<body onload="doOnLoad();">
+	<div style="margin-bottom: 20px;">
+		<table>
+		<p>Digite la fecha con el formato: YYYY-MM-DD (Ej: 2017-03-14) 
+         <input type="text" id="date"></p>
+         <p>Digite el número de días
+        <input type="text" id="day"></p>
+			<tr>
+				<td><input type="button" value="Aplicar" onclick="setInInterval();"></td>
+			</tr>
+			
+		</table>
+	</div>
+	<div id="calendarHere" style="position:relative;height:350px;"></div>
+</body>
+</html>
